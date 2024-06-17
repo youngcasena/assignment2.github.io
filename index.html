@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map of Universities in Kenya</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #28a745 !important;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        #map {
+            height: 500px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">GEGIS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="map.html">Map</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3 class="text-center mt-3 text-success">Map of Universities in Kenya</h2>
+        <div id="map"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Create the map
+        var map = L.map('map').setView([-1.286389, 36.817223], 6);
+
+        // Add a tile layer to the map (OpenStreetMap tiles)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Array of universities with their coordinates
+        var universities = [
+            { name: "University of Nairobi", lat: -1.2796, lon: 36.0620 },
+            { name: "Kenyatta University", lat: -1.0939, lon: 37.0124 },
+            { name: "Moi University", lat: 0.5591, lon: 35.2868 },
+            { name: "Jomo Kenyatta University of Agriculture and Technology (JKUAT)", lat: -1.0971, lon: 37.0146 },
+            { name: "Strathmore University", lat: -1.3015, lon: 36.7897 },
+            { name: "Egerton University", lat: -0.3967, lon: 36.9637 },
+            { name: "Maseno University", lat: -0.1257, lon: 34.7292 },
+            { name: "United States International University - Africa (USIU-Africa)", lat: -1.2155, lon: 36.8852 },
+            { name: "Catholic University of Eastern Africa (CUEA)", lat: -1.3076, lon: 36.8412 },
+            { name: "Technical University of Kenya", lat: -1.3155, lon: 36.8210 },
+            { name: "Mount Kenya University", lat: -1.1504, lon: 36.9643 },
+            { name: "Daystar University", lat: -1.5198, lon: 37.2656 },
+            { name: "Dedan Kimathi University of Technology", lat: -0.5142, lon: 37.2694 },
+            { name: "Multimedia University of Kenya", lat: -1.3458, lon: 36.6661 },
+            { name: "University of Eastern Africa, Baraton", lat: 0.2835, lon: 35.2029 },
+            { name: "Africa Nazarene University", lat: -1.4744, lon: 36.9962 },
+            { name: "Technical University of Mombasa", lat: -4.0330, lon: 39.6530 },
+            { name: "Masinde Muliro University of Science and Technology", lat: 0.5085, lon: 34.7379 },
+            { name: "Pwani University", lat: -3.3761, lon: 39.8320 },
+            { name: "Laikipia University", lat: 0.0031, lon: 36.4419 }
+        ];
+
+        // Add markers for each university
+        universities.forEach(function (university) {
+            var marker = L.marker([university.lat, university.lon]).addTo(map);
+            marker.bindPopup(`<b>${university.name}</b>`);
+        });
+    </script>
+</body>
+</html>
